@@ -1,6 +1,6 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import { Icon, Nav } from "@culturehq/components";
 
 import "@culturehq/components/dist/main.css";
@@ -18,18 +18,18 @@ const App: React.FC = () => (
   <StrictMode>
     <Router>
       <Nav className="nav">
-        <Link to="/">
+        <NavLink exact to="/">
           <Icon icon="home" /> Home
-        </Link>
-        <Link to="/analytics">
+        </NavLink>
+        <NavLink to="/analytics">
           <Icon icon="analytics" /> Analytics
-        </Link>
-        <Link to="/events">
+        </NavLink>
+        <NavLink to="/events">
           <Icon icon="calendar-filled" /> Events
-        </Link>
-        <Link to="/users">
+        </NavLink>
+        <NavLink to="/users">
           <Icon icon="ios-people" /> Users
-        </Link>
+        </NavLink>
       </Nav>
       <div className="content">
         <Switch>
