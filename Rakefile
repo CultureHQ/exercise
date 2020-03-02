@@ -42,35 +42,57 @@ namespace :db do
       { name: 'Ryan Howard' }
     ])
 
-    hosts = User.all.index_by(&:name)
+    users = User.active.index_by(&:name)
 
     Event.create!([
       {
-        host: hosts['Michael Scott'],
+        host: users['Michael Scott'],
         name: 'Dundies 2019',
         starts_at: Date.parse('Nov 15 2019 6pm'),
         ends_at: Date.parse('Nov 15 2019 9pm')
       }, {
-        host: hosts['Angela Martin'],
+        host: users['Angela Martin'],
         name: 'Thanksgiving 2019',
         starts_at: Date.parse('Nov 22 2019 6pm'),
         ends_at: Date.parse('Nov 22 2019 9pm')
       }, {
-        host: hosts['Angela Martin'],
+        host: users['Angela Martin'],
         name: 'Holiday Party 2019',
         starts_at: Date.parse('Dec 20 2019 6pm'),
         ends_at: Date.parse('Dec 20 2019 9pm')
       }, {
-        host: hosts['Dwight Schrute'],
+        host: users['Dwight Schrute'],
         name: 'Self-Defense Class',
         starts_at: Date.parse('Jan 15 2020 12pm'),
         ends_at: Date.parse('Jan 15 2020 1pm')
       }, {
-        host: hosts['Kevin Malone'],
+        host: users['Kevin Malone'],
         name: 'Band Practice',
         starts_at: Date.parse('Jan 16 2020 4:30pm'),
         ends_at: Date.parse('Jan 16 2020 5:30pm')
       }
     ])
+
+    events = Event.order(created_at: :asc).index_by(&:name)
+
+    events.values.first(4).each do |event|
+      event.rsvps.create!(
+        users.values.map { |user| { user: user, response_type: 'accepted' } }
+      )
+    end
+
+    events['Band Practice'].rsvps.create!([
+      { user: users['Andy Bernard'], response_type: 'accepted' },
+      { user: users['Kevin Malone'], response_type: 'accepted' },
+      { user: users['Angela Martin'], response_type: 'interested' }
+    ])
+
+    Rsvp
+      .where(user: users['Ryan Howard'])
+      .update_all(response_type: 'declined')
+
+    Rsvp
+      .where(user: users['Kelly Kapoor'])
+      .update_all(response_type: 'interested')
   end
 end
