@@ -9,16 +9,18 @@ class App < Sinatra::Base
   set :bind, '0.0.0.0'
 
   before do
-    content_type 'application/json'
+    content_type('application/json')
+    headers(
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Allow-Methods' => '*'
+    )
   end
 
   get '/users' do
-    User.order(:id).to_json
+    { users: User.order(:id) }.to_json
   end
 
   get '/events' do
-    Event.order(:created_at).to_json
+    { events: Event.order(:created_at) }.to_json
   end
-
-  run!
 end

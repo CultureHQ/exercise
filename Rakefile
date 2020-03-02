@@ -41,5 +41,36 @@ namespace :db do
       { name: 'Kelly Kapoor' },
       { name: 'Ryan Howard' }
     ])
+
+    hosts = User.all.index_by(&:name)
+
+    Event.create!([
+      {
+        host: hosts['Michael Scott'],
+        name: 'Dundies 2019',
+        starts_at: Date.parse('Nov 15 2019 6pm'),
+        ends_at: Date.parse('Nov 15 2019 9pm')
+      }, {
+        host: hosts['Angela Martin'],
+        name: 'Thanksgiving 2019',
+        starts_at: Date.parse('Nov 22 2019 6pm'),
+        ends_at: Date.parse('Nov 22 2019 9pm')
+      }, {
+        host: hosts['Angela Martin'],
+        name: 'Holiday Party 2019',
+        starts_at: Date.parse('Dec 20 2019 6pm'),
+        ends_at: Date.parse('Dec 20 2019 9pm')
+      }, {
+        host: hosts['Dwight Schrute'],
+        name: 'Self-Defense Class',
+        starts_at: Date.parse('Jan 15 2020 12pm'),
+        ends_at: Date.parse('Jan 15 2020 1pm')
+      }, {
+        host: hosts['Kevin Malone'],
+        name: 'Band Practice',
+        starts_at: Date.parse('Jan 16 2020 4:30pm'),
+        ends_at: Date.parse('Jan 16 2020 5:30pm')
+      }
+    ])
   end
 end

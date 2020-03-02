@@ -5,7 +5,7 @@ export default {
     path: path.resolve(__dirname),
     filename: "application.js"
   },
-  entry: path.join(__dirname, "application.tsx"),
+  entry: path.join(__dirname, "src", "app.tsx"),
   resolve: {
     extensions: [".js", ".ts", ".tsx"]
   },
