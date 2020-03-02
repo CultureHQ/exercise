@@ -11,7 +11,18 @@ export default {
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, use: "awesome-typescript-loader", exclude: /node_modules/ }
+      {
+        test: /\.tsx?$/,
+        use: "awesome-typescript-loader",
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 };

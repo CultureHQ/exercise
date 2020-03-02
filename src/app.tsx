@@ -1,58 +1,53 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Icon, Nav } from "@culturehq/components";
 
-import * as API from "./api";
-import useGet from "./useGet";
+import "@culturehq/components/dist/main.css";
+import "./styles.css";
 
-const EventList: React.FC = () => {
-  const get = useGet<API.ListEvents>("/events");
+import Analytics from "./Analytics";
+import Events from "./Events";
+import Users from "./Users";
 
-  if (get.getting) {
-    return <>getting</>;
-  }
-
-  if (get.error) {
-    throw get.error;
-  }
-
-  return (
-    <ul>
-      {get.got.events.map(event => (
-        <li key={event.id}>
-          {event.name}
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-const UserList: React.FC = () => {
-  const get = useGet<API.ListUsers>("/users");
-
-  if (get.getting) {
-    return <>getting</>;
-  }
-
-  if (get.error) {
-    throw get.error;
-  }
-
-  return (
-    <ul>
-      {get.got.users.map(user => (
-        <li key={user.id}>
-          {user.name}
-        </li>
-      ))}
-    </ul>
-  );
-};
+const Home: React.FC = () => (
+  <h1>Welcome to CultureHQ!</h1>
+);
 
 const App: React.FC = () => (
   <StrictMode>
-    <h1>Exercise</h1>
-    <UserList />
-    <EventList />
+    <Router>
+      <Nav className="nav">
+        <Link to="/">
+          <Icon icon="home" /> Home
+        </Link>
+        <Link to="/analytics">
+          <Icon icon="analytics" /> Analytics
+        </Link>
+        <Link to="/events">
+          <Icon icon="calendar-filled" /> Events
+        </Link>
+        <Link to="/users">
+          <Icon icon="ios-people" /> Users
+        </Link>
+      </Nav>
+      <div className="content">
+        <Switch>
+          <Route path="/analytics">
+            <Analytics />
+          </Route>
+          <Route path="/events">
+            <Events />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   </StrictMode>
 );
 
