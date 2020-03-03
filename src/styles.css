@@ -1,4 +1,5 @@
 body {
+  background-color: #f7f7f7;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
   line-height: 1.4em;
@@ -29,5 +30,16 @@ body {
 }
 
 .content {
-  padding: 60px 20px;
+  margin: 60px auto 0;
+  max-width: 1140px;
+  padding: 20px;
+}
+
+.home {
+  text-align: center;
+}
+
+.home svg {
+  height: 5em;
+  width: 5em;
 }

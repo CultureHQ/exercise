@@ -1,5 +1,5 @@
 import React from "react";
-import { Loader } from "@culturehq/components";
+import { Loader, Panel } from "@culturehq/components";
 
 import * as API from "./api";
 import useGet from "./useGet";
@@ -16,16 +16,20 @@ const Users: React.FC = () => {
   }
 
   return (
-    <>
-      <h1>Users</h1>
-      <ul>
-        {get.got.users.map(user => (
-          <li key={user.id}>
-            {user.name}
-          </li>
-        ))}
-      </ul>
-    </>
+    <Panel>
+      <Panel.Heading>
+        Users
+      </Panel.Heading>
+      <Panel.Body>
+        <ul>
+          {get.got.users.map(user => (
+            <li key={user.id}>
+              {user.name}
+            </li>
+          ))}
+        </ul>
+      </Panel.Body>
+    </Panel>
   );
 };
 

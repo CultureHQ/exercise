@@ -6,13 +6,10 @@ import { Icon, Nav } from "@culturehq/components";
 import "@culturehq/components/dist/main.css";
 import "./styles.css";
 
+import Home from "./Home";
 import Analytics from "./Analytics";
 import Events from "./Events";
 import Users from "./Users";
-
-const Home: React.FC = () => (
-  <h1>Welcome to CultureHQ!</h1>
-);
 
 const App: React.FC = () => (
   <StrictMode>

@@ -17,10 +17,10 @@ class App < Sinatra::Base
   end
 
   get '/users' do
-    { users: User.order(:id) }.to_json
+    { users: User.order(:name) }.to_json
   end
 
   get '/events' do
-    { events: Event.order(:created_at) }.to_json
+    { events: Event.order(:starts_at) }.to_json
   end
 end
