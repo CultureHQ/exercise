@@ -15,7 +15,7 @@ require 'setup'
 
 # rubocop:disable Metrics/BlockLength
 namespace :db do
-  desc 'Seed the development database'
+  desc 'Seed the database'
   task :seed do
     ActiveRecord::Schema.define do
       create_table :departments, force: true do |t|
