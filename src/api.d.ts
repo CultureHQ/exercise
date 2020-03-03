@@ -22,6 +22,12 @@ export type Rsvp = {
   updated_at: string;
 };
 
+export type GetEvent = {
+  event: Event & {
+    rsvps: (Rsvp & { user: User })[];
+  };
+};
+
 export type GetUser = {
   user: User & {
     rsvps: (Rsvp & { event: Event })[];

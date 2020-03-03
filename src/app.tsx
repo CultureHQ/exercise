@@ -8,6 +8,7 @@ import "./styles.css";
 
 import Home from "./Home";
 import Analytics from "./Analytics";
+import Event from "./Event";
 import Events from "./Events";
 import NotFound from "./NotFound";
 import User from "./User";
@@ -33,7 +34,8 @@ const App: React.FC = () => (
       <div className="content">
         <Switch>
           <Route path="/analytics" component={Analytics} />
-          <Route path="/events" component={Events} />
+          <Route exact path="/events" component={Events} />
+          <Route path="/events/:eventId" component={Event} />
           <Route exact path="/users" component={Users} />
           <Route path="/users/:userId" component={User} />
           <Route exact path="/" component={Home} />

@@ -3,12 +3,12 @@ import { Redirect, useParams } from "react-router-dom";
 import { Loader, Panel } from "@culturehq/components";
 
 import * as API from "./api";
-import EventLink from "./EventLink";
+import UserLink from "./UserLink";
 import useGet from "./useGet";
 
-const User: React.FC = () => {
-  const { userId } = useParams();
-  const get = useGet<API.GetUser>(`/users/${userId}`);
+const Event: React.FC = () => {
+  const { eventId } = useParams();
+  const get = useGet<API.GetEvent>(`/events/${eventId}`);
 
   if (get.getting) {
     return <Loader loading />;
@@ -22,18 +22,18 @@ const User: React.FC = () => {
     throw get.error;
   }
 
-  const { user } = get.got;
+  const { event } = get.got;
 
   return (
     <Panel>
       <Panel.Heading>
-        {user.name}
+        {event.name}
       </Panel.Heading>
       <Panel.Body>
         <ul>
-          {user.rsvps.map(rsvp => (
+          {event.rsvps.map(rsvp => (
             <li key={rsvp.id}>
-              <EventLink event={rsvp.event} /> - {rsvp.response_type}
+              <UserLink user={rsvp.user} /> - {rsvp.response_type}
             </li>
           ))}
         </ul>
@@ -42,4 +42,4 @@ const User: React.FC = () => {
   );
 };
 
-export default User;
+export default Event;

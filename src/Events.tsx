@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Loader, Panel } from "@culturehq/components";
 
 import * as API from "./api";
@@ -24,7 +25,7 @@ const Events: React.FC = () => {
         <ul>
           {get.got.events.map(event => (
             <li key={event.id}>
-              {event.name}
+              <Link to={`/events/${event.id}`}>{event.name}</Link>
             </li>
           ))}
         </ul>
