@@ -26,7 +26,7 @@ class App < Sinatra::Base
   end
 
   get '/events' do
-    { events: Event.order(:starts_at) }.to_json(include: :host)
+    { events: Event.includes(:host).order(:starts_at) }.to_json(include: :host)
   end
 
   get '/events/:event_id' do

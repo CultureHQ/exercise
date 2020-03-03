@@ -24,6 +24,7 @@ GEM
     concurrent-ruby (1.1.6)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    docile (1.3.2)
     equalizer (0.0.11)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
@@ -43,6 +44,8 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.1)
     reek (5.6.0)
@@ -62,6 +65,10 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
+    simplecov (0.18.5)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.2)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -85,10 +92,13 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  minitest
   puma
+  rack-test
   rake
   reek
   rubocop
+  simplecov
   sinatra
   sqlite3
 
