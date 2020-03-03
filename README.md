@@ -16,3 +16,10 @@ Ensure you have `node` and `yarn` installed on your system. Then,
 
 * Run `yarn install` in the root of the repository to get the dependencies.
 * Run `yarn start` to start the frontend server.
+
+## Code style
+
+Make sure you code passes the following checks:
+
+* `bundle exec reek` - for Ruby code design
+* `bundle exec rubocop` - for Ruby code styling
