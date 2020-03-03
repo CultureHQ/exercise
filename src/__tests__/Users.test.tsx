@@ -5,22 +5,18 @@ import { render, wait } from "@testing-library/react";
 import { mockUser } from "./testMocks";
 import Users from "../Users";
 
-jest.mock("../makeGet", () => {
-  const makeGet = <T extends any>(path: string): Promise<T> => {
-    if (path !== "/users") {
-      throw new Error();
-    }
+jest.mock("../makeGet", () => (path: string) => {
+  if (path !== "/users") {
+    throw new Error();
+  }
 
-    const users = [
-      mockUser({ id: 1, name: "One" }),
-      mockUser({ id: 2, name: "Two" }),
-      mockUser({ id: 3, name: "Three" })
-    ];
+  const users = [
+    mockUser({ id: 1, name: "One" }),
+    mockUser({ id: 2, name: "Two" }),
+    mockUser({ id: 3, name: "Three" })
+  ];
 
-    return Promise.resolve({ users });
-  };
-
-  return makeGet;
+  return Promise.resolve({ users });
 });
 
 test("renders the list of users", async () => {

@@ -5,24 +5,21 @@ import { render, wait } from "@testing-library/react";
 import { mockEvent, mockRsvp, mockUser } from "./testMocks";
 import { EventWithParam } from "../Event";
 
-jest.mock("../makeGet", () => {
-  const makeGet = <T extends any>(path: string): Promise<T> => {
-    if (path !== "/events/1") {
-      throw new Error();
-    }
+jest.mock("../makeGet", () => (path: string) => {
+  if (path !== "/events/1") {
+    throw new Error();
+  }
 
-    const event = mockEvent({
+  return Promise.resolve({
+    event: {
+      ...mockEvent(),
       rsvps: [
-        mockRsvp({ id: 1, user: mockUser({ name: "One" }) }),
-        mockRsvp({ id: 2, user: mockUser({ name: "Two" }) }),
-        mockRsvp({ id: 3, user: mockUser({ name: "Three" }) })
+        { ...mockRsvp({ id: 1 }), user: mockUser({ name: "One" }) },
+        { ...mockRsvp({ id: 2 }), user: mockUser({ name: "Two" }) },
+        { ...mockRsvp({ id: 3 }), user: mockUser({ name: "Three" }) }
       ]
-    });
-
-    return Promise.resolve({ event });
-  };
-
-  return makeGet;
+    }
+  });
 });
 
 test("renders the event", async () => {

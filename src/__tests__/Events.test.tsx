@@ -5,22 +5,18 @@ import { render, wait } from "@testing-library/react";
 import { mockEvent } from "./testMocks";
 import Events from "../Events";
 
-jest.mock("../makeGet", () => {
-  const makeGet = <T extends any>(path: string): Promise<T> => {
-    if (path !== "/events") {
-      throw new Error();
-    }
+jest.mock("../makeGet", () => (path: string) => {
+  if (path !== "/events") {
+    throw new Error();
+  }
 
-    const events = [
-      mockEvent({ id: 1, name: "One" }),
-      mockEvent({ id: 2, name: "Two" }),
-      mockEvent({ id: 3, name: "Three" })
-    ];
+  const events = [
+    mockEvent({ id: 1, name: "One" }),
+    mockEvent({ id: 2, name: "Two" }),
+    mockEvent({ id: 3, name: "Three" })
+  ];
 
-    return Promise.resolve({ events });
-  };
-
-  return makeGet;
+  return Promise.resolve({ events });
 });
 
 test("renders the list of events", async () => {
