@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+bundle exec reek
+bundle exec rubocop
+bundle exec rake test
+
+yarn compile
+yarn lint
+yarn test

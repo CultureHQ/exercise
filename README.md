@@ -24,17 +24,8 @@ Feel free to use any components from our [component library](https://github.com/
 
 It can be helpful to have access to a `Ruby` console throughout development in case you need to inspect the data types. For this you can run `bin/console` and it will open up a console with everything already loaded.
 
-## Code style
-
-Once development is done, make sure you code passes the following checks:
-
-* `bundle exec reek` - for Ruby code design
-* `bundle exec rubocop` - for Ruby code styling
-* `bundle exec rake` - for Ruby tests
-* `yarn compile` - for TS type checking
-* `yarn lint` - for TS code styling
-* `yarn test` for TS tests
-
 ## Submitting
 
-Please then email us a copy of a patch file that contains you changes. You can obtain one by staging all the files that you've changed in git and then running `git diff` and sending us the output.
+Once development is done, make sure you code passes the code style checks and tests in the repository with `bin/test`. You can check out the individual steps in that script if anything fails. 
+
+Then, please email us a copy of a patch file that contains your changes. You can obtain one by staging all the files that you've changed in git and then running `git diff` and sending us the output.
