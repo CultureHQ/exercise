@@ -67,7 +67,7 @@ namespace :db do
       ]
     )
 
-    users = User.active.index_by(&:name)
+    users = User.all.index_by(&:name)
 
     Event.create!(
       [
