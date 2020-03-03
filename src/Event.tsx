@@ -6,8 +6,7 @@ import * as API from "./api";
 import UserLink from "./UserLink";
 import useGet from "./useGet";
 
-const Event: React.FC = () => {
-  const { eventId } = useParams();
+export const EventWithParam: React.FC<{ eventId?: string }> = ({ eventId }) => {
   const get = useGet<API.GetEvent>(`/events/${eventId}`);
 
   if (get.getting) {
@@ -40,6 +39,12 @@ const Event: React.FC = () => {
       </Panel.Body>
     </Panel>
   );
+};
+
+const Event: React.FC = () => {
+  const { eventId } = useParams();
+
+  return <EventWithParam eventId={eventId} />;
 };
 
 export default Event;

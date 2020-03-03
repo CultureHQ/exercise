@@ -6,8 +6,7 @@ import * as API from "./api";
 import EventLink from "./EventLink";
 import useGet from "./useGet";
 
-const User: React.FC = () => {
-  const { userId } = useParams();
+export const UserWithParam: React.FC<{ userId?: string }> = ({ userId }) => {
   const get = useGet<API.GetUser>(`/users/${userId}`);
 
   if (get.getting) {
@@ -40,6 +39,12 @@ const User: React.FC = () => {
       </Panel.Body>
     </Panel>
   );
+};
+
+const User: React.FC = () => {
+  const { userId } = useParams();
+
+  return <UserWithParam userId={userId} />;
 };
 
 export default User;

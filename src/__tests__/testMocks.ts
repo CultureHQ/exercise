@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import * as API from "../api";
 
 const makeMock = <T extends object>(defaults: T) => (opts: Partial<T> = {}): T => ({

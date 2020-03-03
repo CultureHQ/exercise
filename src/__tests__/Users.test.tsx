@@ -14,7 +14,7 @@ jest.mock("../makeGet", () => {
     const users = [
       mockUser({ id: 1, name: "One" }),
       mockUser({ id: 2, name: "Two" }),
-      mockUser({ id: 3, name: "Three" }),
+      mockUser({ id: 3, name: "Three" })
     ];
 
     return Promise.resolve({ users });
