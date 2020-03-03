@@ -9,6 +9,8 @@ import "./styles.css";
 import Home from "./Home";
 import Analytics from "./Analytics";
 import Events from "./Events";
+import NotFound from "./NotFound";
+import User from "./User";
 import Users from "./Users";
 
 const App: React.FC = () => (
@@ -30,18 +32,12 @@ const App: React.FC = () => (
       </Nav>
       <div className="content">
         <Switch>
-          <Route path="/analytics">
-            <Analytics />
-          </Route>
-          <Route path="/events">
-            <Events />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/analytics" component={Analytics} />
+          <Route path="/events" component={Events} />
+          <Route exact path="/users" component={Users} />
+          <Route path="/users/:userId" component={User} />
+          <Route exact path="/" component={Home} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

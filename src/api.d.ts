@@ -8,7 +8,6 @@ export type User = {
 
 export type Event = {
   id: number;
-  host: User;
   name: string;
   starts_at: string;
   ends_at: string;
@@ -18,11 +17,15 @@ export type Event = {
 
 export type Rsvp = {
   id: number;
-  event: Event;
-  user: User;
   response_type: "invited" | "declined" | "interested" | "accepted";
   created_at: string;
   updated_at: string;
+};
+
+export type GetUser = {
+  user: User & {
+    rsvps: (Rsvp & { event: Event })[];
+  };
 };
 
 export type ListUsers = {
@@ -30,5 +33,5 @@ export type ListUsers = {
 };
 
 export type ListEvents = {
-  events: Event[];
+  events: (Event & { host: User })[];
 };

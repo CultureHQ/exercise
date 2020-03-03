@@ -87,12 +87,7 @@ namespace :db do
       { user: users['Angela Martin'], response_type: 'interested' }
     ])
 
-    Rsvp
-      .where(user: users['Ryan Howard'])
-      .update_all(response_type: 'declined')
-
-    Rsvp
-      .where(user: users['Kelly Kapoor'])
-      .update_all(response_type: 'interested')
+    Rsvp.where(user: users['Ryan Howard']).update_all(response_type: 'declined')
+    Rsvp.where(user: users['Kelly Kapoor']).update_all(response_type: 'invited')
   end
 end

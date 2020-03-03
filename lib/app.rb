@@ -6,6 +6,7 @@ require 'sinatra/base'
 class App < Sinatra::Base
   set :server, 'puma'
   set :bind, '0.0.0.0'
+  disable :show_exceptions
 
   before do
     content_type('application/json')
@@ -16,10 +17,19 @@ class App < Sinatra::Base
   end
 
   get '/users' do
-    { users: User.order(:name) }.to_json
+    { users: User.active.order(:name) }.to_json
+  end
+
+  get '/users/:user_id' do
+    user = User.active.includes(rsvps: :event).find(params[:user_id])
+    { user: user }.to_json(include: { rsvps: { include: :event } })
   end
 
   get '/events' do
-    { events: Event.order(:starts_at) }.to_json
+    { events: Event.order(:starts_at) }.to_json(include: :host)
+  end
+
+  error Sinatra::NotFound, ActiveRecord::RecordNotFound do
+    halt 404
   end
 end

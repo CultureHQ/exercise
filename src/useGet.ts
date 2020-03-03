@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 
-type Parsed = ReturnType<typeof JSON.parse>;
+class RequestError extends Error {
+  public status: number;
 
+  constructor(responseText: string, status: number) {
+    super(responseText);
+    this.status = status;
+  }
+}
+
+type Parsed = ReturnType<typeof JSON.parse>;
 const makeGet = <T extends Parsed>(path: string): Promise<T> => (
   new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -14,7 +22,7 @@ const makeGet = <T extends Parsed>(path: string): Promise<T> => (
       if (xhr.status >= 200 && xhr.status < 300) {
         resolve(JSON.parse(xhr.responseText));
       } else {
-        reject(new Error(xhr.responseText));
+        reject(new RequestError(xhr.responseText, xhr.status));
       }
     };
 
@@ -26,7 +34,7 @@ const makeGet = <T extends Parsed>(path: string): Promise<T> => (
 type GetState<T> = (
   | { error: null; getting: true; got: null }
   | { error: null; getting: false; got: T }
-  | { error: Error; getting: false; got: null }
+  | { error: RequestError; getting: false; got: null }
 );
 
 const useGet = <T extends any>(path: string) => {

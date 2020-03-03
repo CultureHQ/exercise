@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Loader, Panel } from "@culturehq/components";
 
 import * as API from "./api";
@@ -24,7 +25,7 @@ const Users: React.FC = () => {
         <ul>
           {get.got.users.map(user => (
             <li key={user.id}>
-              {user.name}
+              <Link to={`/users/${user.id}`}>{user.name}</Link>
             </li>
           ))}
         </ul>
