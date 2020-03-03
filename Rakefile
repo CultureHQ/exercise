@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-$:.unshift File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
 require 'setup'
 
+# rubocop:disable Metrics/BlockLength
 namespace :db do
   desc 'Seed the development database'
   task :seed do
@@ -35,63 +36,69 @@ namespace :db do
       end
     end
 
-    Department.create!([
-      { name: 'Admin' },
-      { name: 'Sales' },
-      { name: 'Accounting' },
-      { name: 'Shipping' },
-      { name: 'Customer Service' }
-    ])
+    Department.create!(
+      [
+        { name: 'Admin' },
+        { name: 'Sales' },
+        { name: 'Accounting' },
+        { name: 'Shipping' },
+        { name: 'Customer Service' }
+      ]
+    )
 
     departments = Department.all.index_by(&:name)
 
-    User.create!([
-      { name: 'Michael Scott', department: departments['Admin'] },
-      { name: 'Pam Beesley', department: departments['Admin'] },
-      { name: 'Jim Halpert', department: departments['Sales'] },
-      { name: 'Dwight Schrute', department: departments['Sales'] },
-      { name: 'Angela Martin', department: departments['Accounting'] },
-      { name: 'Andy Bernard', department: departments['Sales'] },
-      { name: 'Kevin Malone', department: departments['Accounting'] },
-      {
-        name: 'Roy Anderson',
-        department: departments['Shipping'],
-        active: false
-      },
-      { name: 'Kelly Kapoor', department: departments['Customer Service'] },
-      { name: 'Ryan Howard', department: departments['Customer Service'] }
-    ])
+    User.create!(
+      [
+        { name: 'Michael Scott', department: departments['Admin'] },
+        { name: 'Pam Beesley', department: departments['Admin'] },
+        { name: 'Jim Halpert', department: departments['Sales'] },
+        { name: 'Dwight Schrute', department: departments['Sales'] },
+        { name: 'Angela Martin', department: departments['Accounting'] },
+        { name: 'Andy Bernard', department: departments['Sales'] },
+        { name: 'Kevin Malone', department: departments['Accounting'] },
+        {
+          name: 'Roy Anderson',
+          department: departments['Shipping'],
+          active: false
+        },
+        { name: 'Kelly Kapoor', department: departments['Customer Service'] },
+        { name: 'Ryan Howard', department: departments['Customer Service'] }
+      ]
+    )
 
     users = User.active.index_by(&:name)
 
-    Event.create!([
-      {
-        host: users['Michael Scott'],
-        name: 'Dundies 2019',
-        starts_at: Date.parse('Nov 15 2019 6pm'),
-        ends_at: Date.parse('Nov 15 2019 9pm')
-      }, {
-        host: users['Angela Martin'],
-        name: 'Thanksgiving 2019',
-        starts_at: Date.parse('Nov 22 2019 6pm'),
-        ends_at: Date.parse('Nov 22 2019 9pm')
-      }, {
-        host: users['Angela Martin'],
-        name: 'Holiday Party 2019',
-        starts_at: Date.parse('Dec 20 2019 6pm'),
-        ends_at: Date.parse('Dec 20 2019 9pm')
-      }, {
-        host: users['Dwight Schrute'],
-        name: 'Self-Defense Class',
-        starts_at: Date.parse('Jan 15 2020 12pm'),
-        ends_at: Date.parse('Jan 15 2020 1pm')
-      }, {
-        host: users['Kevin Malone'],
-        name: 'Band Practice',
-        starts_at: Date.parse('Jan 16 2020 4:30pm'),
-        ends_at: Date.parse('Jan 16 2020 5:30pm')
-      }
-    ])
+    Event.create!(
+      [
+        {
+          host: users['Michael Scott'],
+          name: 'Dundies 2019',
+          starts_at: Date.parse('Nov 15 2019 6pm'),
+          ends_at: Date.parse('Nov 15 2019 9pm')
+        }, {
+          host: users['Angela Martin'],
+          name: 'Thanksgiving 2019',
+          starts_at: Date.parse('Nov 22 2019 6pm'),
+          ends_at: Date.parse('Nov 22 2019 9pm')
+        }, {
+          host: users['Angela Martin'],
+          name: 'Holiday Party 2019',
+          starts_at: Date.parse('Dec 20 2019 6pm'),
+          ends_at: Date.parse('Dec 20 2019 9pm')
+        }, {
+          host: users['Dwight Schrute'],
+          name: 'Self-Defense Class',
+          starts_at: Date.parse('Jan 15 2020 12pm'),
+          ends_at: Date.parse('Jan 15 2020 1pm')
+        }, {
+          host: users['Kevin Malone'],
+          name: 'Band Practice',
+          starts_at: Date.parse('Jan 16 2020 4:30pm'),
+          ends_at: Date.parse('Jan 16 2020 5:30pm')
+        }
+      ]
+    )
 
     events = Event.order(created_at: :asc).index_by(&:name)
 
@@ -101,13 +108,16 @@ namespace :db do
       )
     end
 
-    events['Band Practice'].rsvps.create!([
-      { user: users['Andy Bernard'], response_type: 'accepted' },
-      { user: users['Kevin Malone'], response_type: 'accepted' },
-      { user: users['Angela Martin'], response_type: 'interested' }
-    ])
+    events['Band Practice'].rsvps.create!(
+      [
+        { user: users['Andy Bernard'], response_type: 'accepted' },
+        { user: users['Kevin Malone'], response_type: 'accepted' },
+        { user: users['Angela Martin'], response_type: 'interested' }
+      ]
+    )
 
     Rsvp.where(user: users['Ryan Howard']).update_all(response_type: 'declined')
     Rsvp.where(user: users['Kelly Kapoor']).update_all(response_type: 'invited')
   end
 end
+# rubocop:enable Metrics/BlockLength
