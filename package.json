@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "lint": "chq-scripts lint",
     "start": "webpack-dev-server --mode development --hot"
   },
   "author": "Kevin Deisz",
@@ -20,6 +21,7 @@
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.8.6",
+    "@culturehq/scripts": "^5.1.4",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/react-router-dom": "^5.1.3",

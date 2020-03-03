@@ -23,3 +23,4 @@ Make sure you code passes the following checks:
 
 * `bundle exec reek` - for Ruby code design
 * `bundle exec rubocop` - for Ruby code styling
+* `yarn lint` - for TS code styling
