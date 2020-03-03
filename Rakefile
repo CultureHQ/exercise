@@ -7,7 +7,13 @@ namespace :db do
   desc 'Seed the development database'
   task :seed do
     ActiveRecord::Schema.define do
+      create_table :departments, force: true do |t|
+        t.string :name
+        t.timestamps
+      end
+
       create_table :users, force: true do |t|
+        t.references :department
         t.boolean :active, null: false, default: true
         t.string :name, null: false
         t.timestamps
@@ -29,17 +35,31 @@ namespace :db do
       end
     end
 
+    Department.create!([
+      { name: 'Admin' },
+      { name: 'Sales' },
+      { name: 'Accounting' },
+      { name: 'Shipping' },
+      { name: 'Customer Service' }
+    ])
+
+    departments = Department.all.index_by(&:name)
+
     User.create!([
-      { name: 'Michael Scott' },
-      { name: 'Pam Beesley' },
-      { name: 'Jim Halpert' },
-      { name: 'Dwight Schrute' },
-      { name: 'Angela Martin' },
-      { name: 'Andy Bernard' },
-      { name: 'Kevin Malone' },
-      { name: 'Roy Anderson', active: false },
-      { name: 'Kelly Kapoor' },
-      { name: 'Ryan Howard' }
+      { name: 'Michael Scott', department: departments['Admin'] },
+      { name: 'Pam Beesley', department: departments['Admin'] },
+      { name: 'Jim Halpert', department: departments['Sales'] },
+      { name: 'Dwight Schrute', department: departments['Sales'] },
+      { name: 'Angela Martin', department: departments['Accounting'] },
+      { name: 'Andy Bernard', department: departments['Sales'] },
+      { name: 'Kevin Malone', department: departments['Accounting'] },
+      {
+        name: 'Roy Anderson',
+        department: departments['Shipping'],
+        active: false
+      },
+      { name: 'Kelly Kapoor', department: departments['Customer Service'] },
+      { name: 'Ryan Howard', department: departments['Customer Service'] }
     ])
 
     users = User.active.index_by(&:name)
