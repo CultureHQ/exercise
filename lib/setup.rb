@@ -10,7 +10,7 @@ ActiveRecord::Base.establish_connection(
   database: 'development.sqlite3'
 )
 
-require 'models/application_record'
-require 'models/user'
-require 'models/event'
-require 'models/rsvp'
+require 'application_record'
+require 'user'
+require 'event'
+require 'rsvp'
