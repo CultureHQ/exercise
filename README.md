@@ -39,6 +39,7 @@ Once development is done, make sure you code passes the following checks:
 * `bundle exec reek` - for Ruby code design
 * `bundle exec rubocop` - for Ruby code styling
 * `bundle exec rake` - for Ruby tests
+* `yarn compile` - for TS type checking
 * `yarn lint` - for TS code styling
 * `yarn test` for TS tests
 
