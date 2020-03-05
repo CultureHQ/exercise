@@ -20,7 +20,7 @@ Now that you're setup, you can start developing the analytics page. If you navig
 * Total number of RSVPs - this should be just a number inside the panel body, it should only include active users in its count
 * RSVPs by department - this should be a list of the departments in the system, along with the number of RSVPs for each department. Only include active users in the counts of RSVPs, and only include departments that have active users.
 
-Feel free to use any components from our [component library](https://github.com/CultureHQ/components). Any styling that you deem necessary can be added to `styles.css`. No additional packages or gems should be added to this application.
+Feel free to use any components from our [component library](https://github.com/CultureHQ/components) (you can see them layed out [here](https://engineering.culturehq.com/components)). Any styling that you deem necessary can be added to `styles.css`. No additional packages or gems should be added to this application.
 
 It can be helpful to have access to a `Ruby` console throughout development in case you need to inspect the data types. For this you can run `bin/console` and it will open up a console with everything already loaded.
 
