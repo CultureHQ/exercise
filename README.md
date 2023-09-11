@@ -29,3 +29,6 @@ It can be helpful to have access to a `Ruby` console throughout development in c
 Once development is done, make sure you code passes the code style checks and tests in the repository with `bin/test`. You can check out the individual steps in that script if anything fails. Be sure that you have tests to cover the code you've added.
 
 Then, please email us a copy of a patch file that contains your changes. You can obtain one by staging all the files that you've changed in git and then running `git diff` and sending us the output.
+
+`git add .`
+`git diff > my_changes.patch`
