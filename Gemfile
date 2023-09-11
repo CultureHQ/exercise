@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'activerecord'
-gem 'puma'
+gem 'puma', '~> 5.0'
 gem 'sinatra'
 gem 'sqlite3'
 

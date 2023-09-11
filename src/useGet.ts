@@ -8,7 +8,7 @@ type GetState<T> = (
   | { error: RequestError; getting: false; got: null }
 );
 
-const useGet = <T extends any>(path: string) => {
+const useGet = <T extends any>(path: string): GetState<T> => {
   const [state, setState] = useState<GetState<T>>({
     error: null,
     getting: true,

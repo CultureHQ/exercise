@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render, wait } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import { mockEvent, mockRsvp, mockUser } from "./testMocks";
 import { EventWithParam } from "../Event";
@@ -29,7 +29,7 @@ test("renders the event", async () => {
     </Router>
   );
 
-  await wait();
+  await waitFor(() => {});
 
   expect(queryByText("One")).toBeTruthy();
   expect(queryByText("Two")).toBeTruthy();

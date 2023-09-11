@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render, wait } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 
 import { mockEvent } from "./testMocks";
 import Events from "../Events";
@@ -26,7 +26,7 @@ test("renders the list of events", async () => {
     </Router>
   );
 
-  await wait();
+  await waitFor(() => {});
 
   expect(queryByText("One")).toBeTruthy();
   expect(queryByText("Two")).toBeTruthy();
