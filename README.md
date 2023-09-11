@@ -30,5 +30,7 @@ Once development is done, make sure you code passes the code style checks and te
 
 Then, please email us a copy of a patch file that contains your changes. You can obtain one by staging all the files that you've changed in git and then running `git diff` and sending us the output.
 
-`git add .`
-`git diff > my_changes.patch`
+```
+git add .
+git diff > my_changes.patch
+```
